@@ -22,7 +22,9 @@ class Settings(BaseSettings):
     scores_topic: str = "fraud-scores"
     consumer_group: str = "fraud-scorer"
 
-    mlflow_tracking_uri: str = "mlruns"
+    # Local tracking store; mlruns/ is gitignored. MLflow >= 3.14 requires a
+    # database-backed store, so a SQLite file replaces the legacy ./mlruns layout.
+    mlflow_tracking_uri: str = "sqlite:///mlruns/mlflow.db"
     mlflow_experiment: str = "fraud-ml"
 
 

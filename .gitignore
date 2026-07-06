@@ -13,6 +13,7 @@ dist/
 
 # experiment tracking / local data
 mlruns/
+mlartifacts/
 data/*.parquet
 .env
 

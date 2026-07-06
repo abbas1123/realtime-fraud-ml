@@ -148,7 +148,10 @@ def _log_to_mlflow(
     import mlflow  # local import: keeps the training path usable without mlflow installed
 
     settings = get_settings()
-    mlflow.set_tracking_uri(Path(settings.mlflow_tracking_uri).resolve().as_uri())
+    uri = settings.mlflow_tracking_uri
+    if uri.startswith("sqlite:///"):
+        Path(uri.removeprefix("sqlite:///")).parent.mkdir(parents=True, exist_ok=True)
+    mlflow.set_tracking_uri(uri)
     mlflow.set_experiment(settings.mlflow_experiment)
 
     with mlflow.start_run(run_name="baseline_logreg"):
