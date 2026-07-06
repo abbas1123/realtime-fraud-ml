@@ -1,0 +1,14 @@
+# CI/test subset: everything the test suite imports, plus lint and test tools.
+# Kafka (aiokafka), MLflow and Evidently are deliberately excluded - tests never
+# touch them, and skipping them keeps the CI install fast.
+fastapi==0.139.0
+httpx==0.28.1
+numpy==2.5.1
+pandas==2.3.3
+pyarrow==24.0.0
+pydantic==2.13.4
+pydantic-settings==2.14.2
+pytest==9.1.1
+ruff==0.15.20
+scikit-learn==1.9.0
+xgboost==3.3.0

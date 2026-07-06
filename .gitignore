@@ -1,0 +1,21 @@
+# virtualenv
+.venv/
+venv/
+
+# python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.ruff_cache/
+
+# experiment tracking / local data
+mlruns/
+data/*.parquet
+.env
+
+# editors
+.idea/
+.vscode/
