@@ -56,7 +56,7 @@ class Scorer:
         self.feature_names: list[str] = spec["features"]
         self.booster = xgb.Booster()
         self.booster.load_model(str(settings.model_path))
-        self.threshold = settings.fraud_threshold
+        self.threshold = settings.threshold
 
     def vector(self, req: ScoreRequest) -> np.ndarray:
         values = req.model_dump()

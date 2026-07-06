@@ -31,7 +31,7 @@ class StreamScorer:
     def __init__(self, settings: Settings) -> None:
         self.booster = xgb.Booster()
         self.booster.load_model(str(settings.model_path))
-        self.threshold = settings.fraud_threshold
+        self.threshold = settings.threshold
         self.tracker = CardTracker()
 
     def score(self, txn: dict[str, Any]) -> dict[str, Any]:

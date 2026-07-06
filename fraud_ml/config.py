@@ -15,7 +15,7 @@ class Settings(BaseSettings):
 
     model_path: Path = Path("models/fraud_xgb.json")
     feature_spec_path: Path = Path("models/feature_spec.json")
-    fraud_threshold: float = 0.5
+    threshold: float = 0.5  # decision boundary for the "review" verdict
 
     kafka_bootstrap_servers: str = "localhost:9092"
     transactions_topic: str = "transactions"
