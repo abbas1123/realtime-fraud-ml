@@ -1,0 +1,39 @@
+{
+  "model_file": "fraud_xgb.json",
+  "created_utc": "2026-07-06T22:09:43+00:00",
+  "features": [
+    "amount",
+    "log_amount",
+    "txn_count_1h",
+    "txn_count_24h",
+    "amount_zscore",
+    "seconds_since_last_txn",
+    "is_new_merchant",
+    "geo_distance_km",
+    "is_night"
+  ],
+  "train_rows": 320000,
+  "train_fraud_rate": 0.020365625,
+  "params": {
+    "n_estimators": 300,
+    "max_depth": 6,
+    "learning_rate": 0.1,
+    "subsample": 0.9,
+    "colsample_bytree": 0.9,
+    "min_child_weight": 5,
+    "reg_lambda": 1.0,
+    "scale_pos_weight": 48.102
+  },
+  "validation_metrics": {
+    "baseline_logreg": {
+      "roc_auc": 0.9845236130514524,
+      "pr_auc": 0.8303047546883446,
+      "precision_at_1pct": 0.98
+    },
+    "xgboost": {
+      "roc_auc": 0.9954562025991065,
+      "pr_auc": 0.9454611285364377,
+      "precision_at_1pct": 1.0
+    }
+  }
+}
