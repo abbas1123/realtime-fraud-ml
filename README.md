@@ -125,6 +125,24 @@ curl -s localhost:8000/score -H "content-type: application/json" -d '{
 for this exact prediction, no SHAP dependency needed. The decision threshold comes from config
 (`FRAUD_THRESHOLD` env var, default 0.5). `GET /healthz` reports whether the model loaded.
 
+## Latency
+
+`scripts/benchmark_latency.py` times the full `Scorer.score` path (probability + per-feature
+contributions) over 5000 single-transaction requests on one thread:
+
+| metric | value |
+| --- | ---: |
+| mean | 2.26 ms |
+| p50 | 2.22 ms |
+| p90 | 2.52 ms |
+| p99 | 2.83 ms |
+| throughput | ~440 req/s (1 thread) |
+
+Reproduce with `python scripts/benchmark_latency.py`; full report in
+[reports/latency.md](reports/latency.md). Numbers are from a developer CPU and vary by machine —
+the point is that scoring is a low-single-digit-millisecond operation, so throughput scales with
+worker processes rather than model speed.
+
 ## Model and evaluation
 
 Trained on 400k generated transactions (2.0% fraud), split by time: first 80% train, last 20%
